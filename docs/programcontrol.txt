@@ -1,0 +1,15 @@
+Program goal:
+1) Take input from the command line
+2) Send this input to the file reading function
+3) Receive readable file from the file reading function
+4) Return readable file
+
+
+
+Tests:
+1) Correct file name for recall check if contents are readable and correct
+2) Wrong file name check if anything is retrieved
+3) Empty file name check if directory is returned
+4) Check if correct input is taken from command line
+5) Uppercase/Lowercase
+
