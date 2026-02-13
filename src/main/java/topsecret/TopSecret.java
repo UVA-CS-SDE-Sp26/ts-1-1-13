@@ -10,7 +10,7 @@ import java.util.List;
  * Command Line Utility (CLI)
  *
  * Usage:
- *   java topsecret.TopSecret
+ *   java  topsecret.TopSecret
  *   java topsecret.TopSecret <fileNumber>
  *   java topsecret.TopSecret <fileNumber> <keyFile>
  *
@@ -22,6 +22,7 @@ import java.util.List;
 public class TopSecret {
 
     public static void main(String[] args) {
+        System.out.println("WD = " + Paths.get("").toAbsolutePath());
         FileHandler fh = new FileHandler();
 
         try {
@@ -56,6 +57,12 @@ public class TopSecret {
 
                 Cipher cipher = new Cipher(keyPath);
                 String decrypted = cipher.decipher(encrypted);
+
+                System.out.println("ENCRYPTED:");
+                System.out.println(encrypted);
+
+                System.out.println("DECRYPTED:");
+                System.out.println(decrypted);
 
                 System.out.println(decrypted);
                 return;
