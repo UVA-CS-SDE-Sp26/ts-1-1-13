@@ -1,9 +1,7 @@
-package topsecret;
-
 import java.io.IOException;
 import java.util.List;
 
-public class ProgramControl {
+public class programControl {
 
     private topsecret.FileHandler fileHandler;
 
@@ -58,5 +56,5 @@ public class ProgramControl {
         String contents = fileHandler.readFileContents(fileNumber);
         System.out.println(contents);
     }
-}
 
+}

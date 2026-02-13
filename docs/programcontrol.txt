@@ -13,3 +13,21 @@ Tests:
 4) Check if correct input is taken from command line
 5) Uppercase/Lowercase
 
+
+
+
+Constructor
+Stores a FileHandler reference.
+
+execute(String[] args)
+No args → list files.
+One arg → show file contents.
+Handles errors.
+
+listAvailableFiles()
+Gets file list.
+Prints numbered files.
+
+displayFile(String fileNumber)
+Gets file content.
+Prints content
