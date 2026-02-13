@@ -10,7 +10,7 @@ public class programControl_Test {
         System.out.println("TEST 1: Correct file name");
 
         String[] args = {"testfile.txt"};
-        Program.main(args);
+        programControl.file(args);
 
         System.out.println("Expected: Contents of testfile.txt printed\n");
     }
