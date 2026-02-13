@@ -1,7 +1,8 @@
 //Ethan Part B
 package topsecret;
 
-import java.io.BufferedReader;
+package topsecret;
+
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.ArrayList;
@@ -9,62 +10,50 @@ import java.util.List;
 
 public class FileHandler {
 
-    private final String filesFolder = "data" + FileSystems.getDefault().getSeparator();
+    private final Path dataFolder = Paths.get("data");
 
+    /**
+     * Returns a numbered list of text files in the data folder.
+     */
     public List<FileRecord> listFiles() throws IOException {
 
-        Path folderPath = Paths.get(filesFolder);
-
-        if (!Files.exists(folderPath)) {
+        if (!Files.exists(dataFolder)) {
             throw new IOException("Data folder not found.");
         }
 
-        List<FileRecord> records = new ArrayList<>();
+        List<FileRecord> files = new ArrayList<>();
 
         int counter = 1;
 
-        DirectoryStream<Path> stream = Files.newDirectoryStream(folderPath, "*.txt");
+        try (DirectoryStream<Path> stream =
+                     Files.newDirectoryStream(dataFolder, "*.txt")) {
 
-        for (Path file : stream) {
+            for (Path file : stream) {
 
-            String number = String.format("%02d", counter);
-            String filename = file.getFileName().toString();
+                String number = String.format("%02d", counter);
+                String filename = file.getFileName().toString();
 
-            records.add(new FileRecord(number, filename));
+                files.add(new FileRecord(number, filename));
 
-            counter++;
+                counter++;
+            }
         }
 
-        return records;
+        return files;
     }
 
-
+    /**
+     * Reads the contents of a file based on its number.
+     */
     public String readFileContents(String fileNumber) throws IOException {
 
-        List<FileRecord> files = listFiles();
+        for (FileRecord file : listFiles()) {
 
-        for (FileRecord record : files) {
+            if (file.getNumber().equals(fileNumber)) {
 
-            if (record.getNumber().equals(fileNumber)) {
+                Path filePath = dataFolder.resolve(file.getFilename());
 
-                Path targetPath = Paths.get(filesFolder + record.getFilename());
-
-                if (!Files.exists(targetPath)) {
-                    throw new IOException("File not found.");
-                }
-
-                StringBuilder content = new StringBuilder();
-
-                try (BufferedReader reader = Files.newBufferedReader(targetPath)) {
-
-                    String line;
-
-                    while ((line = reader.readLine()) != null) {
-                        content.append(line).append("\n");
-                    }
-                }
-
-                return content.toString();
+                return Files.readString(filePath);
             }
         }
 
