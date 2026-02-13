@@ -58,12 +58,6 @@ public class TopSecret {
                 Cipher cipher = new Cipher(keyPath);
                 String decrypted = cipher.decipher(encrypted);
 
-                System.out.println("ENCRYPTED:");
-                System.out.println(encrypted);
-
-                System.out.println("DECRYPTED:");
-                System.out.println(decrypted);
-
                 System.out.println(decrypted);
                 return;
             }
