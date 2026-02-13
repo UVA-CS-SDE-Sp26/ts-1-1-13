@@ -8,22 +8,21 @@ import java.util.List;
 
 public class FileHandler {
 
-    private Path dataFolder = Paths.get("data");
+    private Path dataFolder = Paths.get("data"); //directory that stores mission files.
 
-    public FileHandler() throws IOException {
+    public FileHandler() throws IOException { //Default constructor that points to the standard "data" folder.
         this.dataFolder = Paths.get("data");
     }
 
-    public FileHandler(String dataFolder) throws IOException {
+    public FileHandler(String dataFolder) throws IOException { //Overloaded constructor
         this.dataFolder = Paths.get(dataFolder);
     }
     /**
      * Returns a numbered list of text files in the data folder.
-     * Option A: Sort filenames alphabetically BEFORE numbering to keep ordering consistent.
      */
     public List<FileRecord> listFiles() throws IOException {
 
-        if (!Files.exists(dataFolder)) {
+        if (!Files.exists(dataFolder)) { // Validate that the folder exists and is a directory
             throw new IOException("Data folder not found.");
         }
 
@@ -60,13 +59,13 @@ public class FileHandler {
      */
     public String readFileContents(String fileNumber) throws IOException {
 
-        for (FileRecord file : listFiles()) {
+        for (FileRecord file : listFiles()) { // Search the numbered file list for a match
             if (file.getNumber().equals(fileNumber)) {
                 Path filePath = dataFolder.resolve(file.getFilename());
                 return Files.readString(filePath);
             }
         }
 
-        throw new IOException("Invalid file number.");
+        throw new IOException("Invalid file number.");  // No matching file number found.
     }
 }
