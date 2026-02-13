@@ -1,8 +1,8 @@
-Homework 2 - TopSecret
+Homework 2 - topsecret
 2/12/26
 Carlos Zanabria
 
-This program allows the user to run the TopSecret deciphering system from the command line.
+This program allows the user to run the topsecret deciphering system from the command line.
 The user can list available secret files, choose a file to decipher using the default key,
 or choose a file and provide an alternate key file. The program handles invalid input
 and prints clear error messages when necessary.
@@ -50,27 +50,27 @@ end program
 TESTS
 
 Running:
-java TopSecret
+java topsecret
 should print list of available files
 
 Running:
-java TopSecret 1
+java topsecret 1
 should print decrypted contents of file 1 using default key
 
 Running:
-java TopSecret 1 customKey.txt
+java topsecret 1 customKey.txt
 should print decrypted contents of file 1 using custom key
 
 Running:
-java TopSecret 99
+java topsecret 99
 should print invalid file number error
 
 Running:
-java TopSecret abc
+java topsecret abc
 should print fileNumber must be an integer error
 
 Running:
-java TopSecret 1 missingKey.txt
+java topsecret 1 missingKey.txt
 should print key file not found error
 
 End program
