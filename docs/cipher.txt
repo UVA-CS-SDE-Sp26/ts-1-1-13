@@ -1,0 +1,28 @@
+TopSecret - Team Member D
+Cipher
+
+Purpose: Cipher class decodes ciphered mission files using a substitution cipher stored in a key file
+
+Key file format:
+Exactly two lines
+Line 1: real characters
+Line 2: cipher characters
+
+Example:
+abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890
+bcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890a
+
+Design:
+-constructor loads and validates the key
+-HashMap is built to map cipher to real characters
+-decipher method replaces each character using the map
+-unknwon characters (not found in map) are unchanged
+
+Validation: exactly two lines, same length of characters, no duplicate cipher characters
+
+Testing:
+testing verifies:
+-correct deciphering of lowercase text
+-correct deciphering of numbers
+-handling of punctuation
+-invalid key detection
