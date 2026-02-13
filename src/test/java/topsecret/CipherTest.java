@@ -1,3 +1,10 @@
+package topsecret;
+import org.junit.jupiter.api.Test;
+import java.io.IOException;
+import java.nio.file.Path;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 class CipherTest {
     @Test
     void decipher_lowercase() throws Exception {
@@ -24,7 +31,7 @@ class CipherTest {
     }
 
     @Test
-    void leaves_unknowns_unchaged() {
+    void leaves_unknowns_unchaged() throws IOException {
         Path keyPath = Path.of("ciphers/key.txt");
         Cipher cipher = new Cipher(keyPath);
 

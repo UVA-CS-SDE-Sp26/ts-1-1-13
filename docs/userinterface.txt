@@ -1,76 +1,105 @@
-Homework 2 - TopSecret
+Homework 2 – TopSecret
 2/12/26
 Carlos Zanabria
 
+PROGRAM DESCRIPTION
+
 This program allows the user to run the TopSecret deciphering system from the command line.
-The user can list available secret files, choose a file to decipher using the default key,
-or choose a file and provide an alternate key file. The program handles invalid input
-and prints clear error messages when necessary.
+The user may list available secret files, select a file to decipher using the default key,
+or select a file and provide an alternate key file.
 
-PSUEDOCODE
+The TopSecret class serves as the command-line interface and delegates file handling
+and decryption to helper classes (FileHandler and Cipher).
+The program validates user input and prints clear error messages when necessary.
 
-Program starts with main(String[] args)
+
+PSEUDOCODE
+
+Program begins in main(String[] args)
 
 If args.length == 0:
-print list of available secret files
-print instructions for how to run program with arguments
+    Call FileHandler to list available secret files
+    Print file numbers and filenames
+    Print usage instructions
 
 If args.length == 1:
-attempt to parse args[0] as integer fileNumber
-if parsing fails:
-print error message
-end program
-if fileNumber is invalid:
-print error message
-end program
-read selected file
-decrypt using default key
-print decrypted message
+    Attempt to parse args[0] as integer fileNumber
+    If parsing fails:
+        Print "Error: fileNumber must be an integer."
+        End program
+
+    Call FileHandler to retrieve file contents
+    If fileNumber is invalid:
+        Print error message
+        End program
+
+    Use Cipher with default key
+    Print decrypted message
 
 If args.length == 2:
-attempt to parse args[0] as integer fileNumber
-keyFile = args[1]
-if parsing fails:
-print error message
-end program
-if fileNumber is invalid:
-print error message
-end program
-if keyFile does not exist:
-print error message
-end program
-read selected file
-decrypt using provided keyFile
-print decrypted message
+    Attempt to parse args[0] as integer fileNumber
+    keyFile = args[1]
+
+    If parsing fails:
+        Print "Error: fileNumber must be an integer."
+        End program
+
+    If keyFile does not exist:
+        Print "Error: key file not found."
+        End program
+
+    Call FileHandler to retrieve file contents
+    Use Cipher with provided keyFile
+    Print decrypted message
 
 If args.length > 2:
-print usage instructions
-end program
+    Print usage instructions
+    End program
 
-TESTS
 
-Running:
-java TopSecret
-should print list of available files
+COMMAND LINE USAGE
 
-Running:
-java TopSecret 1
-should print decrypted contents of file 1 using default key
+To list available files:
+    java topsecret.TopSecret
 
-Running:
-java TopSecret 1 customKey.txt
-should print decrypted contents of file 1 using custom key
+To decipher a file using the default key:
+    java topsecret.TopSecret <fileNumber>
 
-Running:
-java TopSecret 99
-should print invalid file number error
+To decipher a file using a custom key file:
+    java topsecret.TopSecret <fileNumber> <keyFile>
+
+
+TEST CASES
 
 Running:
-java TopSecret abc
-should print fileNumber must be an integer error
+    java topsecret.TopSecret
+Expected:
+    Prints list of available files and usage instructions
 
 Running:
-java TopSecret 1 missingKey.txt
-should print key file not found error
+    java topsecret.TopSecret 1
+Expected:
+    Prints decrypted contents of file 1 using default key
+
+Running:
+    java topsecret.TopSecret 1 customKey.txt
+Expected:
+    Prints decrypted contents of file 1 using custom key
+
+Running:
+    java topsecret.TopSecret 99
+Expected:
+    Prints invalid file number error
+
+Running:
+    java topsecret.TopSecret abc
+Expected:
+    Prints fileNumber must be an integer error
+
+Running:
+    java topsecret.TopSecret 1 missingKey.txt
+Expected:
+    Prints key file not found error
+
 
 End program

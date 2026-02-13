@@ -1,4 +1,4 @@
-TopSecret - Team Member D
+topsecret - Team Member D
 Cipher
 
 Purpose: Cipher class decodes ciphered mission files using a substitution cipher stored in a key file
