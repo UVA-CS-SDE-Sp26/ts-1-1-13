@@ -1,0 +1,76 @@
+Homework 2 - TopSecret
+2/12/26
+Carlos Zanabria
+
+This program allows the user to run the TopSecret deciphering system from the command line.
+The user can list available secret files, choose a file to decipher using the default key,
+or choose a file and provide an alternate key file. The program handles invalid input
+and prints clear error messages when necessary.
+
+PSUEDOCODE
+
+Program starts with main(String[] args)
+
+If args.length == 0:
+print list of available secret files
+print instructions for how to run program with arguments
+
+If args.length == 1:
+attempt to parse args[0] as integer fileNumber
+if parsing fails:
+print error message
+end program
+if fileNumber is invalid:
+print error message
+end program
+read selected file
+decrypt using default key
+print decrypted message
+
+If args.length == 2:
+attempt to parse args[0] as integer fileNumber
+keyFile = args[1]
+if parsing fails:
+print error message
+end program
+if fileNumber is invalid:
+print error message
+end program
+if keyFile does not exist:
+print error message
+end program
+read selected file
+decrypt using provided keyFile
+print decrypted message
+
+If args.length > 2:
+print usage instructions
+end program
+
+TESTS
+
+Running:
+java TopSecret
+should print list of available files
+
+Running:
+java TopSecret 1
+should print decrypted contents of file 1 using default key
+
+Running:
+java TopSecret 1 customKey.txt
+should print decrypted contents of file 1 using custom key
+
+Running:
+java TopSecret 99
+should print invalid file number error
+
+Running:
+java TopSecret abc
+should print fileNumber must be an integer error
+
+Running:
+java TopSecret 1 missingKey.txt
+should print key file not found error
+
+End program
