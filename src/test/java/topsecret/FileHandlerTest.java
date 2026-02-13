@@ -1,5 +1,10 @@
 // Ethan Part B
 
+package topsecret;
+import org.junit.jupiter.api.Test;
+import java.io.IOException;
+import static org.junit.jupiter.api.Assertions.*;
+
 class FileHandlerTest {
 
     /**
@@ -46,7 +51,7 @@ class FileHandlerTest {
      * Invalid file number should throw exception.
      */
     @Test
-    void shouldThrowOnInvalidFileNumber() {
+    void shouldThrowOnInvalidFileNumber() throws IOException {
 
         FileHandler handler = new FileHandler();
 
@@ -59,7 +64,7 @@ class FileHandlerTest {
      * Missing folder should throw exception.
      */
     @Test
-    void shouldThrowIfFolderMissing() {
+    void shouldThrowIfFolderMissing() throws IOException {
 
         FileHandler handler = new FileHandler("fakeFolder");
 

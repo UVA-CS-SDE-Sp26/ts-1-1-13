@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class TopSecret {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         FileHandler fh = new FileHandler();
 
         try {

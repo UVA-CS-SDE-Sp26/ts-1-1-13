@@ -8,8 +8,15 @@ import java.util.List;
 
 public class FileHandler {
 
-    private final Path dataFolder = Paths.get("data");
+    private Path dataFolder = Paths.get("data");
 
+    public FileHandler() throws IOException {
+        this.dataFolder = Paths.get("data");
+    }
+
+    public FileHandler(String dataFolder) throws IOException {
+        this.dataFolder = Paths.get(dataFolder);
+    }
     /**
      * Returns a numbered list of text files in the data folder.
      */
