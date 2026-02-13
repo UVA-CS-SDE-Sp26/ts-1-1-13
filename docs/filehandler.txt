@@ -1,2 +1,75 @@
 // Ethan Part B
 
+## Program Description:
+
+This program manages all access to mission data files for the TopSecret program.
+It scans the data folder to find available .txt files, assigns each file a consistent number,
+and returns file contents when requested. The FileHandler prevents other components from directly
+accessing the filesystem. It also handles errors, such as missing folders or invalid file numbers,
+by throwing exceptions so they can be handled by the control layer.
+
+## UML Diagram:
+
++----------------------+
+|     FileHandler      |
++----------------------+
+| - dataFolder : Path  |
++----------------------+
+| + FileHandler()      |
+| + FileHandler(path)  |
+| + listFiles() : List<FileRecord> |
+| + readFileContents(fileNumber:String) : String |
++----------------------+
+            |
+            | uses
+            ▼
++----------------------+
+|     FileRecord       |
++----------------------+
+| - number : String    |
+| - filename : String  |
++----------------------+
+| + getNumber()        |
+| + getFilename()      |
++----------------------+
+
+--------------------------------------------------
+## Pseudocode:
+
+**Method: listFiles()**
+
+IF data folder does not exist
+    THROW IOException
+
+CREATE empty list of paths
+
+FOR each .txt file in the data folder
+    ADD file path to list
+
+SORT the list alphabetically by filename
+
+CREATE empty list of FileRecord objects
+SET counter to 1
+
+FOR each file in the sorted list
+    FORMAT counter to two digits
+    CREATE FileRecord with number and filename
+    ADD FileRecord to list
+    INCREMENT counter
+
+RETURN list of FileRecords
+
+---------------------------------------------------
+
+**Method: readFileContents(fileNumber)**
+
+CALL listFiles()
+
+FOR each FileRecord in the list
+    IF the record number matches fileNumber
+        BUILD full file path
+        READ file contents as a string
+        RETURN contents
+
+THROW IOException if no matching file is found
+
